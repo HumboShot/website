@@ -3,6 +3,11 @@ body
     padding: 16px;
 }
 
+b
+{
+    text-align: center;
+}
+
 .header
 {
     vertical-align: middle;
@@ -26,7 +31,19 @@ body
     padding-bottom: 0.75em;
 }
 
+.timeCal
+{
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+}
+
 .searchBar
 {
     width: 80%;
+}
+
+.cover-img
+{
+    padding: 4px;
 }

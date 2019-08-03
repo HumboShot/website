@@ -1,5 +1,38 @@
 var tableData;
 
+var searchButton = document.getElementById("searchButton")
+searchButton.addEventListener("click", function()
+{
+    searchForAnime()
+})
+
+var searchField = document.getElementById("searchBar")
+searchField.addEventListener("keydown", function(e)
+{
+    if(e.keyCode === 13)
+    {
+        searchForAnime()
+    }
+})
+
+function searchForAnime()
+{
+    //Clear table
+    $("tbody").children().remove()
+
+    // Make url
+    var url = new URL("https://api.jikan.moe/v3/search/anime")
+    url.searchParams.append("q", searchField.value)
+    console.log(url)
+
+    //Make get request
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", url)
+    xhr.responseType = "text"
+    xhr.addEventListener("load", showSearchResults)
+    xhr.send()
+}
+
 function showSearchResults()
 {
     var searchResults = JSON.parse(this.responseText)
@@ -18,6 +51,7 @@ function showSearchResults()
         var airingCol = document.createElement("td")
 
         imageCol.src = searchResults.results[i].image_url
+        imageCol.classList.add("cover-img")
 
         var titleColText = document.createTextNode(searchResults.results[i].title)
         var episodeColText = document.createTextNode(searchResults.results[i].episodes)
@@ -47,29 +81,10 @@ function onRowClicked()
     getAnime(this.rowIndex)
 }
 
-function searchForAnime()
-{
-    //Clear table
-    $("tbody").children().remove()
-
-    // Make url
-    var url = new URL("https://api.jikan.moe/v3/search/anime")
-    url.searchParams.append("q", searchField.value)
-    console.log(url)
-
-    //Make get request
-    var xhr = new XMLHttpRequest()
-    xhr.open("GET", url)
-    xhr.responseType = "text"
-    xhr.addEventListener("load", showSearchResults)
-    xhr.send()
-}
-
 function getAnime(rowPos)
 {
     var url = "https://api.jikan.moe/v3/anime/"
     url += tableData.results[rowPos - 1].mal_id
-    console.log(url)
 
     var xhr = new XMLHttpRequest()
     xhr.open("GET", url)
@@ -81,20 +96,70 @@ function getAnime(rowPos)
 function calculateTimeToWatch()
 {
     var fullAnime = JSON.parse(this.responseText)
-    console.log(fullAnime.duration)
+    var rawDurations = fullAnime.duration.split(/\b\s+/)
+    console.log(rawDurations)
+    var durations = []
+    var timeInMintuesPerEpisode = 0
+    for (let index = 0; index < rawDurations.length; index++) {
+        const element = rawDurations[index];
+        if(parseInt(element))
+        {
+            var nextElement = rawDurations[index + 1]
+            var timeAsInt = parseInt(element)
+            if(nextElement == "min")
+                timeInMintuesPerEpisode = timeInMintuesPerEpisode + timeAsInt
+            else if(nextElement == "hr")
+                timeInMintuesPerEpisode = timeInMintuesPerEpisode + (timeAsInt * 60)
+        }
+        console.log(timeInMintuesPerEpisode + " " + element)
+    }
+    console.log(timeInMintuesPerEpisode)
+
+    timeItWouldTakeToWatch = "It would take " +  + " to watch " + fullAnime.title
+
+    var timeCalSpan = document.getElementById("timeCal")
+    timeCalSpan.textContent = formatTimeToWatchString(timeInMintuesPerEpisode, fullAnime.episodes, fullAnime.title)
 }
 
-var searchButton = document.getElementById("searchButton")
-searchButton.addEventListener("click", function()
+function formatTimeToWatchString(timeInMintuesPerEpisode, amountOfEpisodes, animeTitle)
 {
-    searchForAnime()
-})
+    var fullTime = (timeInMintuesPerEpisode * amountOfEpisodes)
 
-var searchField = document.getElementById("searchBar")
-searchField.addEventListener("keydown", function(e)
-{
-    if(e.keyCode === 13)
+    var formattedTime = formatTime(fullTime)
+
+    var fullString = "It would take " + formattedTime;
+
+    if(amountOfEpisodes > 1)
     {
-        searchForAnime()
+        fullString += " to watch " + amountOfEpisodes + " episodes of "
     }
-})
+    else
+    {
+        fullString += "to watch "
+    }
+
+    return fullString + animeTitle
+}
+
+function formatTime(fullTime)
+{
+    var hours = Math.floor(fullTime/60)
+    var minutes = Math.floor(fullTime - (hours * 60))
+
+    var returnString = ""
+    if(hours > 0)
+    {
+        returnString += hours + " hours"
+        if(minutes > 0)
+        {
+            returnString += " and "
+        }
+    }
+
+    if(minutes > 0)
+    {
+        returnString += minutes + " mintues"
+    }
+
+    return returnString
+}

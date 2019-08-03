@@ -1,0 +1,32 @@
+body
+{
+    padding: 16px;
+}
+
+.header
+{
+    vertical-align: middle;
+}
+
+
+.img-valign 
+{
+    margin-bottom: 1.25em;
+}
+
+.webTitle
+{
+    font-size: 42px;
+}
+
+.search
+{
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+}
+
+.searchBar
+{
+    width: 80%;
+}

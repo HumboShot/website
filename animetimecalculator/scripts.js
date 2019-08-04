@@ -97,8 +97,7 @@ function calculateTimeToWatch()
 {
     var fullAnime = JSON.parse(this.responseText)
     var rawDurations = fullAnime.duration.split(/\b\s+/)
-    console.log(rawDurations)
-    var durations = []
+
     var timeInMintuesPerEpisode = 0
     for (let index = 0; index < rawDurations.length; index++) {
         const element = rawDurations[index];
@@ -110,12 +109,8 @@ function calculateTimeToWatch()
                 timeInMintuesPerEpisode = timeInMintuesPerEpisode + timeAsInt
             else if(nextElement == "hr")
                 timeInMintuesPerEpisode = timeInMintuesPerEpisode + (timeAsInt * 60)
-        }
-        console.log(timeInMintuesPerEpisode + " " + element)
+        }    
     }
-    console.log(timeInMintuesPerEpisode)
-
-    timeItWouldTakeToWatch = "It would take " +  + " to watch " + fullAnime.title
 
     var timeCalSpan = document.getElementById("timeCal")
     timeCalSpan.textContent = formatTimeToWatchString(timeInMintuesPerEpisode, fullAnime.episodes, fullAnime.title)
@@ -131,14 +126,18 @@ function formatTimeToWatchString(timeInMintuesPerEpisode, amountOfEpisodes, anim
 
     if(amountOfEpisodes > 1)
     {
-        fullString += " to watch " + amountOfEpisodes + " episodes of "
+        fullString += " to watch " + amountOfEpisodes + " episodes of " + animeTitle
+    }
+    else if (amountOfEpisodes == 1)
+    {
+        fullString += " to watch " + animeTitle
     }
     else
     {
-        fullString += "to watch "
+        fullString = "No episodes found for " + animeTitle +", maybe it's because there no confirmed amount of episodes on MyAnimeList"
     }
 
-    return fullString + animeTitle
+    return fullString 
 }
 
 function formatTime(fullTime)

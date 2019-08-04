@@ -1,6 +1,7 @@
 body
 {
     padding: 16px;
+    background-color: black;
 }
 
 b
@@ -10,7 +11,9 @@ b
 
 .header
 {
+    text-align: center;
     vertical-align: middle;
+    margin: 0 auto;
 }
 
 
@@ -26,6 +29,7 @@ b
 
 .search
 {
+    text-align: center;
     width: 50%;
     margin: 0 auto;
     padding-bottom: 0.75em;

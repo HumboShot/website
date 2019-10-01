@@ -1,4 +1,7 @@
 var tableData;
+var currentSelectedAnimeTitle;
+var currentSelectedAnimeDuraiton = 0;
+var currentSelectedAnimeTotalEpisodes = 0;
 
 var searchButton = document.getElementById("searchButton")
 searchButton.addEventListener("click", function()
@@ -13,6 +16,13 @@ searchField.addEventListener("keydown", function(e)
     {
         searchForAnime()
     }
+})
+
+var calculateButton = document.getElementById("calculateAlreadyWatchedTimeButton")
+var episodeInputField = document.getElementById("episodesWatched")
+calculateButton.addEventListener("click", function()
+{
+    calculateTimeToWatchWithEpisodes(episodeInputField.value)
 })
 
 function searchForAnime()
@@ -101,6 +111,7 @@ function calculateTimeToWatch()
     var timeInMintuesPerEpisode = 0
     for (let index = 0; index < rawDurations.length; index++) {
         const element = rawDurations[index];
+        console.log(element)
         if(parseInt(element))
         {
             var nextElement = rawDurations[index + 1]
@@ -112,6 +123,10 @@ function calculateTimeToWatch()
         }    
     }
 
+    currentSelectedAnimeDuraiton = timeInMintuesPerEpisode
+    currentSelectedAnimeTotalEpisodes = fullAnime.episodes
+    currentSelectedAnimeTitle = fullAnime.title
+
     var timeCalSpan = document.getElementById("timeCal")
     timeCalSpan.textContent = formatTimeToWatchString(timeInMintuesPerEpisode, fullAnime.episodes, fullAnime.title)
 }
@@ -119,9 +134,7 @@ function calculateTimeToWatch()
 function formatTimeToWatchString(timeInMintuesPerEpisode, amountOfEpisodes, animeTitle)
 {
     var fullTime = (timeInMintuesPerEpisode * amountOfEpisodes)
-
     var formattedTime = formatTime(fullTime)
-
     var fullString = "It would take " + formattedTime;
 
     if(amountOfEpisodes > 1)
@@ -161,4 +174,19 @@ function formatTime(fullTime)
     }
 
     return returnString
+}
+
+function calculateTimeToWatchWithEpisodes(watchedEpisodes)
+{
+    var timeCalSpan = document.getElementById("timeCal")
+    if(watchedEpisodes <= currentSelectedAnimeTotalEpisodes)
+    {
+        var newTotalEpisodes = currentSelectedAnimeTotalEpisodes - watchedEpisodes
+
+        timeCalSpan.textContent = formatTimeToWatchString(currentSelectedAnimeDuraiton, newTotalEpisodes, currentSelectedAnimeTitle)
+    }
+    else
+    {
+        timeCalSpan.textContent = "You have entered too many episodes compare to how many the anime has. Try again" 
+    }
 }

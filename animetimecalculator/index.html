@@ -15,14 +15,17 @@
         <div class="search">
             <span>Made using the <a href="https://jikan.docs.apiary.io/#reference">Jikan API</a> as a weekend project</span>
             <input class="searchBar" type="text" id="searchBar">
-            <input id="searchButton"" type="button" value="Search">
+            <input id="searchButton" type="button" value="Search">
         </div>
         <div class="timeCal">
-            <b id="timeCal"></b>
+            <b>Episodes already watched</b>
+            <input class="episodesWatched" id="episodesWatched" type="number">
+            <input id="calculateAlreadyWatchedTimeButton" type="button" value="Calculate">
+            <br><b id="timeCal"></b>
         </div>
         <table class="table">
             <thead>
-                <th class="cover-img"></th>
+                <th class="cover-img">Cover</th>
                 <th>Title</th>
                 <th>Episodes</th>
                 <th>Type</th>

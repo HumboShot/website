@@ -13,6 +13,20 @@ body {
     line-height: 30px;
 }
 
+section {
+    padding-bottom: 16pt;
+}
+
+section a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+section a:hover {
+    color: #20C20E
+}
+
 p {
     margin: 0;
     padding: 0;
@@ -20,17 +34,4 @@ p {
 
 #header {
     padding-bottom: 16pt;
-}
-
-#social {
-    padding-bottom: 16pt;
-}
-
-#social a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-#social a:hover {
-    color: #20C20E
 }

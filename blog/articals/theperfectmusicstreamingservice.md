@@ -5,7 +5,7 @@ Well. At least not for me ¯\\_ (ツ)_/¯
 
 ## But why
 
-Well, currently i have been using Google Play Music (Referenced as GMusic from now on) for the last six years, the only reason being why, i could upload all my own MP3 files to their servers, and listen to them where i was, on what ever device i wanted to, without any hassle. This have been working amazingly for me for all this time, with any hiccups (except for maybe being able to replace a uploaded song). But it has been lacking in a lot of other departments
+Well, currently i have been using Google Play Music (Referenced as GMusic from now on) for the last six years, the only reason being why, was that i could upload all my own MP3 files to their servers, and listen to them where i was, on what ever device i wanted to, without any hassle. This have been working amazingly for me for all this time, with any hiccups (except for maybe being able to replace a uploaded song). But it has been lacking in a lot of other departments
 
 ### I'm feeling lucky
 
@@ -13,7 +13,7 @@ So, just like all other music streaming services out there, Google has made this
 
 ### No desktop client (well, not a official one)
 
-This is the thing that has been kinda annoying. Most streaming services have a desktop client that you can use, that integrated well into your OS, so you can use media keys and what not. But GMusic doesn't have one. I have always wondered why, because i hear a ton of people really wanting one. But i guess that just want people to stay inside of their browser (preferably Chrome properly), and i did this for a long time. I got a plugin for Chrome that allowed me to use Media Keys, and custom keybindings for media keys on keyboards that don't have them, and then i would run GMusic in a Chrome app window, this way GMusic could run without having the Chrome browser open, and not having to find the tab inside the giant list of already existing tabs i have. Later i moved onto a Electron powered unofficial desktop for GMusic called [Google Play Music Desktop Player](https://www.googleplaymusicdesktopplayer.com/). But it is slow and sluggish on even good speced systems, and it seems like the development has slowed down on it. But hey, at least it has a built in dark mode 😎
+This is the thing that has been kinda annoying me. Most streaming services have a desktop client that you can use, that integrated well into your OS, so you can use media keys and what not. But GMusic doesn't have one. I have always wondered why, because i hear a ton of people really wanting one. But i guess that they just want people to stay inside of their browser (preferably Chrome properly), and i did this for a long time. I got a plugin for Chrome that allowed me to use Media Keys, and custom keybindings for media keys on keyboards that don't have them, and then i would run GMusic in a Chrome app window, this way GMusic could run without having the Chrome browser open, and not having to find the tab inside the giant list of already existing tabs i have. Later i moved onto a Electron powered unofficial desktop for GMusic called [Google Play Music Desktop Player](https://www.googleplaymusicdesktopplayer.com/). But it is slow and sluggish on even good speced systems, and it seems like the development has slowed down on it. But hey, at least it has a built in dark mode 😎
 
 ### It isn't social
 
@@ -21,7 +21,7 @@ This is a weird one, and could best be explained this way. When ever somebody se
 
 ### The lack of good playlists
 
-Last year i got a offer from Spotify that i could try the premium service for three months for the price of a coffee. It was a offer that i could not decline. I have used Spotify in the past before i started using GMusic, so i was interested in how the service was today, and i was blown away. The playlists they have on Spotify are great, and they even seemed to be [human created](https://www.youtube.com/watch?v=Ji_WfHxatoQ), which is a cool thing, in my option. Some of the playlists also have their own art and descriptions, which it also seems like verified users on Spotify can create leading to some get findings when i was using their service.
+Last year i got a offer from Spotify, that i could try the premium service for three months, for the price of a coffee. It was an offer that i could not decline. I have used Spotify in the past before i started using GMusic, so i was interested in how the service was today, and i was blown away. The playlists they have on Spotify are great, and they even seemed to be [human created](https://www.youtube.com/watch?v=Ji_WfHxatoQ), which is a cool thing, in my option. Some of the playlists also have their own art and descriptions, which it also seems like verified users on Spotify can create leading to some get findings when i was using their service.
 
 ![the lofi dinner playlist shows this perfectly](assets/theperfectmusicstreamingservice-spotify-playlist.jpg)
 
@@ -60,4 +60,3 @@ I do wish that they would fix some of the bugs that i have experienced over the 
 Another reason for me going with Youtube Music, is that i already pay for Youtube Premium. I use Youtube a lot, maybe a bit to much. It's my primary source of entertainment, and the features that you get with Youtube Premium, was enough for me to pay the extra couple of dollars compared to the GMusic subscription i already have.
 
 I do hope that now that it seems like Google is going all in on Youtube Music that it will turn out to be a great competitor to Spotify and the like. But with the name Youtube Music, it is sure to confuse some people about what the product actually is
-

@@ -1,6 +1,7 @@
 [Go Back](../)
 
-# The perfect music service doesn't exit
+# The perfect music service doesn't exist
+
 Well. At least not for me ¯\\_ (ツ)_/¯
 
 ## But why

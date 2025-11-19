@@ -1,0 +1,58 @@
+
+:root{
+  --bg:#00110a;
+  --muted:#7f9a8d;
+  --accent:#39ff14; /* hacker green */
+  --panel:#02130e;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;min-height:100%}
+body{
+  margin:0;
+  font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  background: linear-gradient(180deg,#000 0%, #00120a 100%);
+  color: #9fffb9;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.wrap{width:100vw;min-height:100vh;margin:0;padding:0;display:flex;flex-direction:column;align-items:stretch}
+.site-header{text-align:center;margin:6px 0 12px 0}
+.site-header h1{margin:0;font-size:2rem;color:#c7ffd3}
+.tagline{color:var(--muted);margin-top:6px}
+
+.grid{display:flex;flex-direction:column;gap:18px;flex:1;width:100%;max-width:none;min-height:0}
+
+/* Card -> terminal window */
+.card{background:var(--panel);border:none;padding:0;border-radius:0;overflow:hidden;box-shadow:none;display:flex;flex-direction:column}
+.terminal .term-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.05));border-bottom:1px solid rgba(255,255,255,0.02)}
+.term-title{color:var(--muted);font-size:0.95rem}
+/* hide the visual cursor (positioning was off) */
+.term-cursor{display:none}
+@keyframes blink{50%{opacity:0}}
+
+.term-body{padding:12px 14px;overflow:auto}
+.cmd{font-size:0.98rem;color:var(--muted);display:flex;gap:8px;align-items:center;padding:8px 0}
+.cmd .command{color:#dfffe1}
+.output{font-size:0.98rem;color:#bfffd0;padding:6px 0 6px 22px}
+.prompt{color:var(--muted);width:18px}
+.output a{color:var(--accent);text-decoration:none;outline-offset:2px}
+.output a:hover{color:#00120a;background:var(--accent);text-decoration:none;padding:2px 6px;border-radius:4px}
+
+.site-footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.88rem}
+
+.session{grid-column:1/-1;flex:1;height:100%}
+
+/* Make the terminal card take available vertical space */
+.card.session{width:100%;height:100vh;display:flex;flex-direction:column}
+.card.session .term-body{flex:1;overflow:auto;padding:18px}
+
+/* ensure header stays compact */
+.term-header{flex:0 0 auto}
+/* remove header divider to match terminal look */
+.term-header{border-bottom: none}
+
+/* small adjustment for header/footer spacing when full-screen */
+.site-footer{margin-top:10px}
+
+@media (max-width:480px){.wrap{padding:12px;margin:18px auto}.site-header h1{font-size:1.4rem}}

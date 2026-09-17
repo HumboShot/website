@@ -15,6 +15,7 @@ The site will be broken down into three sections
 - The last one is for game profiles
 
 ## Social Media links
+
 <https://www.youtube.com/@HumboShot>
 <https://x.com/HumboShot>
 <https://www.instagram.com/humboshot/>
@@ -22,6 +23,7 @@ The site will be broken down into three sections
 <https://www.linkedin.com/in/christian-glarmb%C3%A6k-8638b8117/>
 
 ## Tracking links
+
 <https://www.backloggd.com/u/HumboShot/>
 <https://letterboxd.com/HumboShot/>
 <https://myanimelist.net/animelist/HumboShot>
@@ -31,6 +33,7 @@ The site will be broken down into three sections
 <https://www.discogs.com/user/humboshot/collection>
 
 ## Game profiles
+
 <https://steamcommunity.com/id/humbo/>
 <https://eu.finalfantasyxiv.com/lodestone/character/38186991/>
 <https://psnprofiles.com/HumboShot>

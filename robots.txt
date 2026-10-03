@@ -1,14 +1,2 @@
-# robots.txt
-# Allow all search engines to crawl and index the site
-
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /.git/
-Disallow: /node_modules/
-
-# Crawl-delay settings (optional - adjust as needed)
-# Crawl-delay: 1
-
-# Sitemap location (uncomment and update if you have a sitemap)
-# Sitemap: https://yoursite.com/sitemap.xml

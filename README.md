@@ -1,30 +1,25 @@
-# HumboShot Links — Static site
+# website
 
-This repo contains a small static site that collects Humbo's social links, tracking profiles, and game profiles.
+The source for [humboshot.com](https://humboshot.com). It is a single static page in a terminal style.
 
-Files added:
+## Files
 
-- `index.html` — main site
-- `assets/styles.css` — styles (dark + hacker-green theme)
+- `index.html`: the page
+- `css/main.css`: the styles
+- `js/main.js`: the interactive shell. It reads the directories, files and links from the sections in `index.html`, so you only edit links there.
+- `img/favicon.ico`: the favicon
+- `robots.txt`: crawler rules
 
-To view locally, open `index.html` in a browser (or serve the folder with a static server).
+## View locally
 
-Example (PowerShell):
-
-```powershell
-# from the repo root
-Start-Process -FilePath "index.html"
-```
-
-Or use a quick Python HTTP server:
+Open `index.html` in a browser, or serve the folder:
 
 ```powershell
 python -m http.server 8000
-# then open http://localhost:8000
 ```
 
-# website
+Then open <http://localhost:8000>.
 
-Just a small repository for my website, in stead of using Google Drive as my version control
+## Publish
 
-Don't expect anything amazing in here
+Run `publish.cmd`. It mirrors the site to the NAS share with robocopy. Add `-DryRun` to see the changes first.

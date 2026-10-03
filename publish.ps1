@@ -11,8 +11,8 @@ if (-not (Test-Path -LiteralPath $dest)) {
     throw "Destination share not reachable: $dest"
 }
 
-$excludeDirs = @('.git', '.vscode', 'assets')
-$excludeFiles = @('README.md', 'TODO.MD', 'publish.ps1', 'publish.cmd')
+$excludeDirs = @('.git', '.vscode', '.claude')
+$excludeFiles = @('README.md', 'publish.ps1', 'publish.cmd')
 
 $roboArgs = @($source, $dest, '/MIR',
     '/NFL', '/NDL', '/NJH', '/NP',

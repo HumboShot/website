@@ -1,11 +1,16 @@
 param(
+    [string]$Destination = $env:WEBSITE_PUBLISH_DEST,
     [switch]$DryRun
 )
 
 $ErrorActionPreference = 'Stop'
 
 $source = $PSScriptRoot
-$dest = $env:WEBSITE_PUBLISH_DEST
+$dest = $Destination
+
+if (-not $dest) {
+    throw "No destination. Use -Destination or set WEBSITE_PUBLISH_DEST."
+}
 
 if (-not (Test-Path -LiteralPath $dest)) {
     throw "Destination share not reachable: $dest"

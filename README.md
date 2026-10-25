@@ -22,4 +22,4 @@ Then open <http://localhost:8000>.
 
 ## Publish
 
-Run `publish.cmd`. It mirrors the site to the NAS share with robocopy. Add `-DryRun` to see the changes first.
+Run `publish.cmd`. It mirrors the site to the destination folder with robocopy. Set the destination with `-Destination <path>` or with the `WEBSITE_PUBLISH_DEST` environment variable. Add `-DryRun` to see the changes first.

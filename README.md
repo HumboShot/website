@@ -22,19 +22,16 @@ Then open <http://localhost:8000>.
 
 ## Publish
 
-Each push to `master` deploys the site to the Namecheap hosting. The `Deploy` workflow (`.github/workflows/deploy.yml`) mirrors the site with rsync over SSH. You can also start it by hand from the Actions tab.
+Each push to `master` deploys the site to the Namecheap hosting. The `Deploy` workflow (`.github/workflows/deploy.yml`) mirrors the site with lftp over FTPS (FTP with forced TLS and a certificate check). You can also start it by hand from the Actions tab.
 
-The workflow needs these repository secrets:
+The workflow uses a cPanel FTP account whose folder is the document root. Create the account under cPanel → FTP Accounts, use it only for this deploy, and add these repository secrets:
 
 | Secret | Content |
 | --- | --- |
-| `DEPLOY_SSH_KEY` | Private key that is authorized in cPanel → SSH Access. Use it only for this deploy. |
-| `DEPLOY_KNOWN_HOSTS` | Host key line of the server (`ssh-keyscan -p 21098 <host>`) |
-| `DEPLOY_HOST` | Server hostname |
-| `DEPLOY_PORT` | SSH port (`21098` on Namecheap) |
-| `DEPLOY_USER` | cPanel username |
-| `DEPLOY_PATH` | Document root, for example `public_html/` |
+| `FTP_HOST` | Server hostname, for example `server192-5.web-hosting.com`. Use the hostname, not the IP, or the certificate check fails. |
+| `FTP_USER` | Full FTP username, for example `deploy@humboshot.com` |
+| `FTP_PASSWORD` | Password of the FTP account |
 
-The mirror deletes files that are not in the repo, but it keeps `.well-known/`, `.htaccess` and `cgi-bin/` on the server.
+The mirror deletes files that are not in the repo, but it keeps `.well-known/`, `.htaccess`, `cgi-bin/` and `.ftpquota` on the server.
 
 To copy the site to a local folder or share, run `publish.cmd`. It mirrors the site with robocopy. Set the destination with `-Destination <path>` or with the `WEBSITE_PUBLISH_DEST` environment variable. Add `-DryRun` to see the changes first.

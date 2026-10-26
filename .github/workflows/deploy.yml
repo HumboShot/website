@@ -9,41 +9,38 @@ concurrency:
   group: deploy
   cancel-in-progress: false
 
+env:
+  DEPLOY_HOST: humboshot.com
+  # Host key of the web server, pinned so the job fails on any other server.
+  DEPLOY_HOST_KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICNErLeQdZICwLAX0D9hzD6C2gZxChvAE8nBKhBjhdb2
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check secrets
+      - name: Set up SSH
         env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
-          for v in FTP_HOST FTP_USER FTP_PASSWORD; do
-            [ -n "${!v}" ] || { echo "::error::Secret $v is not set"; exit 1; }
-          done
+          [ -n "$DEPLOY_SSH_KEY" ] || { echo "::error::Secret DEPLOY_SSH_KEY is not set"; exit 1; }
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "$DEPLOY_HOST $DEPLOY_HOST_KEY" > ~/.ssh/known_hosts
 
-      - name: Install lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-
-      # The mirror deletes server files that are not in the repo. Excluded paths are kept,
-      # so the exclude list also protects .well-known (SSL validation), .htaccess (cPanel
-      # HTTPS redirect), cgi-bin and .ftpquota on the server.
-      - name: Mirror site
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      # The server limits the key to rsync writes inside the web root (rrsync -wo),
+      # so the destination path is relative to the web root.
+      # Checksums, not times: a fresh checkout gives every file a new mtime.
+      - name: Sync site
         run: |
-          lftp -u "$FTP_USER" --env-password "ftp://$FTP_HOST" <<'EOF'
-          set cmd:fail-exit true
-          set ftp:ssl-force true
-          set ftp:ssl-protect-data true
-          set ssl:verify-certificate true
-          set net:max-retries 2
-          set net:timeout 20
-          mirror --reverse --delete --verbose --no-perms --exclude '^\.git/' --exclude '^\.github/' --exclude '^\.vscode/' --exclude '^\.claude/' --exclude '^README\.md$' --exclude '^publish\.(ps1|cmd)$' --exclude '^\.well-known/' --exclude '^\.htaccess$' --exclude '^cgi-bin/' --exclude '^\.ftpquota$' ./ ./
-          bye
-          EOF
+          rsync -rlc --delete --delay-updates --chmod=D755,F644 -i \
+            --exclude '.git/' --exclude '.github/' --exclude '.vscode/' --exclude '.claude/' \
+            --exclude 'README.md' --exclude 'publish.ps1' --exclude 'publish.cmd' \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
+            ./ "deploy@$DEPLOY_HOST:"
+
+      - name: Remove key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

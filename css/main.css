@@ -3,13 +3,13 @@ body {
     padding: 16pt 16pt 64pt;
     font-family: Consolas, 'Lucida Console', 'Courier New', monospace;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.2;
     letter-spacing: 0.02em;
     color: #ffffff;
 }
 
 section {
-    padding-bottom: 24px;
+    padding-bottom: 1.2em;
 }
 
 section ul {
@@ -35,7 +35,6 @@ p {
 
 .cmd {
     margin: 0;
-    padding-bottom: 6px;
     color: #ffffff;
 }
 
@@ -49,8 +48,16 @@ p {
     text-shadow: 0 0 6px rgba(32, 194, 14, 0.55), 0 0 14px rgba(32, 194, 14, 0.3);
 }
 
-.typeout {
-    padding-bottom: 8px;
+.neofetch {
+    display: flex;
+    gap: 3ch;
+}
+
+.neofetch .logo {
+    flex: none;
+    padding-top: 0.1em;
+    line-height: 1;
+    white-space: pre;
 }
 
 .cursor {
@@ -126,7 +133,7 @@ p {
 }
 
 .output {
-    padding-bottom: 12px;
+    padding-bottom: 1.2em;
 }
 
 .output .lines {
@@ -146,10 +153,6 @@ a:focus-visible {
     body {
         font-size: 15px;
         padding: 12px 12px 48px;
-    }
-
-    section {
-        padding-bottom: 18px;
     }
 
     .cmd .pre {

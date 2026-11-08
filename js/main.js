@@ -148,16 +148,14 @@
         'visitor@humboshot.com',
         '---------------------',
         'name: Christian "Humbo" Glarmbæk',
-        'role: streamer, content creator, maker of small internet things',
+        'role: streamer, content creator',
         'work: software engineer, mostly building apps',
         `links: ${links.size}`,
         'shell: humbo-sh',
         `uptime: ${Math.floor(seconds / 60)}m ${seconds % 60}s`,
       ];
-      const output = el('p', 'lines');
-      info.forEach((row, i) => {
-        output.append(el('span', 'logo', (logo[i] ?? ' '.repeat(7)) + '   '), row + (i < info.length - 1 ? '\n' : ''));
-      });
+      const output = el('div', 'neofetch');
+      output.append(el('p', 'logo', logo.join('\n')), text(...info));
       return output;
     },
   };
